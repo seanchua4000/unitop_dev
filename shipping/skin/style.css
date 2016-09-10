@@ -1,0 +1,131 @@
+body {
+	margin: 0;
+	font: 14px arial;
+}
+:focus {
+	outline: none;
+}
+
+.container1 {
+	width:1240px;
+	background:#f2f2f2;
+	border:1px solid #d9d9d9;
+	margin:0 auto 15px auto;
+}
+
+nav {
+	font: 16px arial;
+	margin:0 auto;
+	padding-top:3px;
+	width:100%;
+	height:32px;
+	text-align:center;
+	background:#e84547;
+	border-radius: 2px;
+}
+
+nav ul {
+	margin:0 auto;
+	padding:0;
+}
+
+nav li {
+	margin:5px 0px;
+	display:inline-block;
+	list-style:none;
+}
+
+nav li a {
+	padding:5px 20px;
+	color:#ffffff;
+	border-radius:2px;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+nav li a:hover {
+	background:#ec2229;
+}
+
+.float {
+	float: right;
+}
+
+.shipping_address {
+	font:15px arial;
+	width:100%;
+}
+
+.shipping_address h2 {
+	color:#0d0d0d;
+	padding-left:12px;
+}
+
+.shipping_address input {
+	height:22px;
+	width:260px;
+}
+
+.shipping_address input:focus, .shipping_address select:focus {
+	background:#ffffff;
+	border:1px solid #66b5ff;
+	box-shadow:0 0 2px #80c1ff;
+}
+
+.shipping_address select {
+	height:24px;
+	width:263px;
+}
+
+.shipping_address label {
+    width:130px;
+    display:inline-block;
+    float:left;
+    padding:3px;
+}
+
+.shipping_address li {
+    padding:12px;
+    position:relative;
+    list-style:none;
+}
+
+.shipping_address button {
+	background:#ec2229;
+	color:#ffffff;
+	border:0;
+	width:263px;
+	font-size:16px;
+	padding:8px;
+	display:block;
+	border-radius: 3px;
+	margin-left: 138px;
+}
+
+.shipping_address button:hover {
+	opacity:.80;
+    cursor:pointer;
+}
+
+.summary_table {
+	margin: auto;
+	padding: 5px;
+	width: 1200px;
+	border: 1px solid black;
+	text-align: center;
+}
+
+.st_headers {
+	width: 300px;
+}
+
+.st_header_product {
+	text-indent: 10px;
+	width: 900px;
+}
+
+.plus_icon {
+	padding-left:17px;
+	background: url('expand_btn.png') no-repeat;
+	cursor: pointer; 
+}
