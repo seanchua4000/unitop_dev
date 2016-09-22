@@ -1,7 +1,12 @@
 <?php
 require_once 'core/init.php';
+if($_GET['cmuni']) {
+	$cmuni = $_GET['cmuni'];
+	$location = Db::getInstance();
+	$cmunicipality = $location->query("SELECT * FROM location WHERE parent_id = $cmuni");
+}
 ?>
-<!-- Home Page -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,12 +26,24 @@ require_once 'core/init.php';
 		</ul>
 	</nav>
 	<div class="location">
-		<h2>Provinces</h2>
-		<table id="provinces">
-		</table>
+		<h2>Cities and Municipalities:</h2>
+			<table>
+				<tr class="theader">
+					<td>City/Municipality</td>
+					<td>Latitude</td>
+					<td>Longitude</td>
+				</tr>
+					<?php
+					foreach($cmunicipality->results() as $cmunis) {
+						echo '<tr>';
+						echo '<td><input type="checkbox" name="location" value="'.$cmunis->main_id.'">'.$cmunis->location.'</td>';
+						echo '<td>'.$cmunis->latitude.'</td>';
+						echo '<td>'.$cmunis->longitude.'</td>';
+						echo '</tr>';
+					}
+					?>
+			</table>
 	</div>
-
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="skin/location.js"></script>

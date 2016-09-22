@@ -1,7 +1,12 @@
 <?php
 require_once 'core/init.php';
+if($_GET['brgy']) {
+	$brgy = $_GET['brgy'];
+	$location = Db::getInstance();
+	$barangay = $location->query("SELECT * FROM location WHERE parent_id = $brgy");
+}
 ?>
-<!-- Home Page -->
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +21,17 @@ require_once 'core/init.php';
 			<li><a href="new_province.php">Province</a></li>
 			<li><a href="new_municipality.php">Municipality</a></li>
 			<li><a href="new_barangay.php">Barangay</a></li>
-			<li><a href="shipping_fee.php">Shipping Fee</a></li>
 			<li><a href="shipping_address.php">Shipping Address</a></li>
 		</ul>
 	</nav>
-	<div class="location">
-		<h2>Provinces</h2>
-		<table id="provinces">
-		</table>
-	</div>
+	<h2>City and Municipalities:</h2>
+		<ul id="cmunicipalities">
+		<?php
+		foreach($barangay->results() as $brgys) {
+		echo '<li><a href="barangays.php?brgy='.$brgys->main_id.'">'.$cmunis->location.'</li>';
+		}
+		?>
+		</ul>
 
 
 </div>

@@ -124,8 +124,35 @@ nav li a:hover {
 	width: 900px;
 }
 
-.plus_icon {
-	padding-left:17px;
-	background: url('expand_btn.png') no-repeat;
-	cursor: pointer; 
+.location {
+	width: 600px;
+	border: 1px solid black;
+	margin:auto;
+	font: 14px arial;
+}
+
+.location h2 {
+	margin:20px;
+	font: 25px arial;
+	text-align: center;
+}
+
+.location table {
+	margin:auto;
+	width: 570px;
+}
+
+.location a {
+	color:#005ce6;
+	text-decoration: none;
+}
+
+.location a:hover {
+	color:#0066ff;
+	text-decoration: underline;
+}
+
+.theader {
+	font-weight: bold;
+	font-size: 16px;
 }

@@ -62,6 +62,7 @@ $provinces = $location->select('location', array('parent_id', '=', 0));
 			<li><a href="new_province.php">Province</a></li>
 			<li><a href="new_municipality.php">Municipality</a></li>
 			<li><a href="new_barangay.php">Barangay</a></li>
+			<li><a href="shipping_fee.php">Shipping Fee</a></li>
 			<li><a href="shipping_address.php">Shipping Address</a></li>
 		</ul>
 	</nav>

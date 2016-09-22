@@ -12,6 +12,16 @@ $provinces = $location->select('location', array('parent_id', '=', 0));
 </head>
 <body>
 <div class="container1">
+<nav>
+		<ul>
+			<li><a href="index.php">Home</a></li>
+			<li><a href="new_province.php">Province</a></li>
+			<li><a href="new_municipality.php">Municipality</a></li>
+			<li><a href="new_barangay.php">Barangay</a></li>
+			<li><a href="shipping_fee.php">Shipping Fee</a></li>
+			<li><a href="shipping_address.php">Shipping Address</a></li>
+		</ul>
+	</nav>
 	<form action="" method="POST" class="shipping_address">
 	<ul>
 		<h2>Shipping Address:</h2>
@@ -46,11 +56,17 @@ $provinces = $location->select('location', array('parent_id', '=', 0));
 			<select class="subplace" id="CM">
 			</select>
 		</li>
+
+		
 		<li>
-			<label>Barangay</label>
+			<!--<label>Barangay</label>
 			<select class="subplace" id="BR" >
-			</select>
+			</select>-->
+			
+			<label>Barangay</label>
+			<input type="text" name="latitude" >
 		</li>
+		
 		<li>
 			<button type="submit">Address</button>
 		</li>
@@ -60,6 +76,7 @@ $provinces = $location->select('location', array('parent_id', '=', 0));
 	</form>
 </div>
 <div class="container1">
+
 	<div class="shipping_address">
 	<ul>
 	<h2>Order Summary:</h2>
