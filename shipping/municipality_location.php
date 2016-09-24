@@ -4,7 +4,7 @@ if($_POST['id'])
 {
 	$parent_id=$_POST['id'];
 	$location = Db::getInstance();
-	$municipality = $location->select('location', array('parent_id', '=', $parent_id));
+	$municipality = $location->query("SELECT * FROM location WHERE parent_id = $parent_id AND status = 1");
 
 	if($municipality->results())
 	{

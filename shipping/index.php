@@ -21,12 +21,10 @@ require_once 'core/init.php';
 		</ul>
 	</nav>
 	<div class="location">
-		<h2>Provinces</h2>
+		<h2>List of Provinces</h2>
 		<table id="provinces">
 		</table>
 	</div>
-
-
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="skin/location.js"></script>

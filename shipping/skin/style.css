@@ -125,7 +125,7 @@ nav li a:hover {
 }
 
 .location {
-	width: 600px;
+	width: 750px;
 	border: 1px solid black;
 	margin:auto;
 	font: 14px arial;
@@ -134,12 +134,13 @@ nav li a:hover {
 .location h2 {
 	margin:20px;
 	font: 25px arial;
+	font-weight: bold;
 	text-align: center;
 }
 
 .location table {
 	margin:auto;
-	width: 570px;
+	width: 600px;
 }
 
 .location a {
@@ -155,4 +156,14 @@ nav li a:hover {
 .theader {
 	font-weight: bold;
 	font-size: 16px;
+}
+
+.prov_header {
+	font: 22px arial;
+	font-weight: bold;
+	text-align: center;
+}
+
+.prov_text {
+	font: 17px arial;
 }

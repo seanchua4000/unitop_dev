@@ -103,6 +103,7 @@ $(document).ready(function()
 				});
 			}); */
 		});
+
 $.ajax({
 	url: "list_province.php",
 	success: function(result)

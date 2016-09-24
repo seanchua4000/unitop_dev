@@ -2,7 +2,7 @@
 require_once 'core/init.php';
 
 $location = Db::getInstance();
-$provinces = $location->select('location', array('parent_id', '=', 0));
+$provinces = $location->query("SELECT * FROM location WHERE parent_id = 0 AND status = 1");
 ?>
 <!DOCTYPE html>
 <html>
