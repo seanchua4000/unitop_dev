@@ -22,7 +22,7 @@ require_once 'core/init.php';
 	</nav>
 	<div class="location">
 		<h2>List of Provinces</h2>
-		<table id="provinces">
+		<table id="provinces" class="loc_table">
 		</table>
 	</div>
 </div>

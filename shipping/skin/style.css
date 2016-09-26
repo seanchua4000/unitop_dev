@@ -133,14 +133,9 @@ nav li a:hover {
 
 .location h2 {
 	margin:20px;
-	font: 25px arial;
+	font: 27px arial;
 	font-weight: bold;
 	text-align: center;
-}
-
-.location table {
-	margin:auto;
-	width: 600px;
 }
 
 .location a {
@@ -153,17 +148,40 @@ nav li a:hover {
 	text-decoration: underline;
 }
 
-.theader {
-	font-weight: bold;
-	font-size: 16px;
+.loc_table {
+	margin:auto;
+	width: 600px;
+	border-spacing: 0px;
+}
+
+.loc_table th {
+	height: 35px;
+	font-size: 17px;
+	background: #cccccc;
+	border-radius: 1px;
+}
+
+.loc_table td {
+	height: 25px;
+	font-size: 15px;
+}
+
+.loc_table tr:hover {
+	background: #a6a6a6;
 }
 
 .prov_header {
 	font: 22px arial;
 	font-weight: bold;
 	text-align: center;
+	padding: 5px;
 }
 
 .prov_text {
 	font: 17px arial;
+}
+
+.input_class1 {
+	width: 150px;
+	height: 25px;
 }

@@ -8,7 +8,7 @@ if(Input::exists('GET')) {
 		$db = Db::getInstance();
 		$res = $db->query("SELECT location.*, status.*, shipping_fee.fee_type FROM location
 			LEFT JOIN status ON location.status = status.id
-			LEFT JOIN shipping_fee ON location.fee_type = shipping_fee.id
+			LEFT JOIN shipping_fee ON location.fee_type = shipping_fee.main_id
 			WHERE parent_id = $cmuni");
 	}
 }
@@ -22,6 +22,7 @@ if(Input::exists('POST'))
 			{
 				$query = $db->query("UPDATE location SET fee_type = $fee_type WHERE main_id = $id");
 			}
+		Redirect::to('index.php');
 		} catch(Exception $e) {
 			die($e->getMessage());
 		}
@@ -53,15 +54,15 @@ if(Input::exists('POST'))
 		<form action="" method="POST">
 		<div class="prov_header">
 		<?php echo strtoupper($location); ?>
-		<select name="fee_type" class="fee_type"></select>
+		<select name="fee_type" class="fee_type input_class1"></select>
 		</div>	
-		<table>
-			<tr class="theader">
-				<td>City/Municipality</td>
-				<td>Latitude</td>
-				<td>Longitude</td>
-				<td>Status</td>
-				<td>Fee</td>
+		<table class="loc_table">
+			<tr>
+				<th>City/Municipality</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Status</th>
+				<th>Fee</th>
 			</tr>
 			<?php foreach($res->results() as $res_info) : ?>
 				<tr>

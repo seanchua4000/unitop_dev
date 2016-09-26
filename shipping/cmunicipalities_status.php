@@ -8,28 +8,27 @@ if(Input::exists('GET')) {
 		$db = Db::getInstance();
 		$res = $db->query("SELECT location.*, status.*, shipping_fee.fee_type FROM location
 			LEFT JOIN status ON location.status = status.id
-			LEFT JOIN shipping_fee ON location.fee_type = shipping_fee.id
+			LEFT JOIN shipping_fee ON location.fee_type = shipping_fee.main_id
 			WHERE parent_id = $cmuni");
 	}
 }
 if(Input::exists('POST'))
 {
-	if(!empty(Input::get('main_status'))&&!empty(Input::get('sub_status')))
-	{
-		try {
-			$main_id = Input::get('main_status');
-			$prov_id = Input::get('prov_id');
-			foreach(Input::get('sub_status') as $k => $sub_id)
-			{
-				$query1 = $db->query("UPDATE location SET status = $main_id WHERE main_id = $prov_id");
-				$query2 = $db->query("UPDATE location SET status = $main_id WHERE main_id = $sub_id");
+	try {
+		$main_id = Input::get('main_status');
+		$prov_id = Input::get('prov_id');
+		$query1 = $db->query("UPDATE location SET status = $main_id WHERE main_id = $prov_id");
+			if(!empty(Input::get('sub_status'))) {
+				foreach(Input::get('sub_status') as $k => $sub_id)
+				{
+					$query2 = $db->query("UPDATE location SET status = $main_id WHERE main_id = $sub_id");
+				}
 			}
-		} catch(Exception $e) {
-			die($e->getMessage());
-		}
+		Redirect::to('index.php');
+	} catch(Exception $e) {
+		die($e->getMessage());
 	}
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -56,16 +55,16 @@ if(Input::exists('POST'))
 		<div class="prov_header">
 			<?php echo strtoupper($location); ?>
 			<span class="prov_text">Status</span>
-			<select id="main_status" name="main_status"></select>
+			<select id="main_status" name="main_status" class="input_class1"></select>
 			<input type="hidden" name="prov_id" value="<?php echo $cmuni; ?>">
 		</div>
-		<table>
+		<table class="loc_table">
 			<tr class="theader">
-				<td>City/Municipality</td>
-				<td>Latitude</td>
-				<td>Longitude</td>
-				<td>Status</td>
-				<td>Fee</td>
+				<th>City/Municipality</th>
+				<th>Latitude</th>
+				<th>Longitude</th>
+				<th>Status</th>
+				<th>Fee</th>
 			</tr>
 			<?php foreach($res->results() as $res_info) : ?>
 				<tr>

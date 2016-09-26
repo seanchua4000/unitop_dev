@@ -5,12 +5,12 @@ $province = $db->query("SELECT location.*, status.* FROM location
 	LEFT JOIN status ON location.status = status.id
 	WHERE parent_id = 0
 	");
-echo '<tr class="theader">';	
-echo	'<td>Status</td>';
-echo	'<td>Province</td>';
-echo	'<td>Latitude</td>';
-echo	'<td>Longitude</td>';
-echo	'<td>Action</td>';
+echo '<tr>';	
+echo	'<th>Status</th>';
+echo	'<th>Province</th>';
+echo	'<th>Latitude</th>';
+echo	'<th>Longitude</th>';
+echo	'<th>Action</th>';
 echo '</tr>';
 foreach($province->results() as $provinces) {
 	echo '<tr>';
