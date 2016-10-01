@@ -125,8 +125,9 @@ nav li a:hover {
 }
 
 .location {
-	width: 750px;
-	border: 1px solid black;
+	width:900px;
+	border: 1px solid #cccccc;
+	background: #cccccc;
 	margin:auto;
 	font: 14px arial;
 }
@@ -150,8 +151,17 @@ nav li a:hover {
 
 .loc_table {
 	margin:auto;
-	width: 600px;
+	width: 850px;
 	border-spacing: 0px;
+	
+}
+
+.theader {
+	height: 35px;
+	font-size: 18px;
+	font-weight: bold;
+	background: #b3b3b3;
+	border-radius: 1px;
 }
 
 .loc_table th {
@@ -163,6 +173,7 @@ nav li a:hover {
 
 .loc_table td {
 	height: 25px;
+	padding: 5px;
 	font-size: 15px;
 }
 
@@ -184,4 +195,9 @@ nav li a:hover {
 .input_class1 {
 	width: 150px;
 	height: 25px;
+}
+
+.form_1 {
+	background: #cccccc;
+	width:530px;
 }

@@ -3,21 +3,48 @@ require_once 'core/init.php';
 $db = Db::getInstance();
 if(Input::exists('GET'))
 {
-	if(!empty(Input::get('id')))
 	$main_id = Input::get('id');
 	$query = $db->query("SELECT * FROM shipping_fee WHERE main_id = $main_id");
 	$res = $query->first();
 }
-if(Input::exists('POST'))
+if(Input::exists())
 {
-	$fee_name = Input::get('fee_name');
-	$fee = Input::get('fee');
-	$desc = Input::get('description');
-	$status = Input::get('status');
-	try {
-		$db->query("UPDATE shipping_fee SET fee_type = $fee_name, fee = $fee, description = $desc, status = $status WHERE main_id = $main_id");
-	} catch(Exception $e) {
-		die($e->getMessage());
+	if(Token::check(Input::get('token')))
+	{
+		$validate = new Validate();
+		$validation = $validate->check($_POST, array(
+			'fee_name' => array(
+				'required' => true
+				),
+			'fee' => array(
+				'required' => true
+				).
+			'description' => array(
+				'required' => true
+				).
+			'status' => array(
+				'required' => true
+				)
+		));
+
+		if($validation->passed())
+		{
+			try {
+				$fee_name = Input::get('fee_name');
+				$fee = Input::get('fee');
+				$descr = Input::get('description');
+				$status = Input::get('status');
+				$db->query("UPDATE shipping_fee SET fee_type = '$fee_name', fee = '$fee', description = '$descr', status = '$status' WHERE main_id = $main_id");
+				Redirect::to('shipping_fee2.php');
+			} catch(Exception $e) {
+				die($e->getMessage());
+			}
+		} else {
+			foreach($validation->errors() as $error)
+			{
+				echo $error;
+			}
+		}
 	}
 }
 ?>
@@ -39,16 +66,29 @@ if(Input::exists('POST'))
 			<li><a href="shipping_address.php">Shipping Address</a></li>
 		</ul>
 	</nav>
-	<form action="" method="POST">
-		<label>Name</label>
+	<form action="" method="POST" class="shipping_address">
+		<ul>
+		<li>
+			<label>Name</label>
 			<input type="text" name="fee_name" value="<?php echo $res->fee_type; ?>">
-		<label>Fee</label>
+		</li>
+		<li>
+			<label>Fee</label>
 			<input type="text" name="fee" value="<?php echo $res->fee; ?>">
-		<label>Description</label>
+		</li>
+		<li>
+				<label>Description</label>
 			<input type="text" name="description" value="<?php echo $res->description; ?>">
+		</li>
+		<li>
+			<label>Status</label>
 			<select id="main_status" name="status">
 			</select>
-			<input type="submit" value="Save">
+		</li>
+		<li>
+			<button type="button">Save</button>
+		</li>
+		</ul>
 			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
 	</form>
 </div>

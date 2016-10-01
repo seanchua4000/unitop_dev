@@ -3,13 +3,7 @@
 <body>
 
 <?php
-$a1=array("red","green");
-$a2=array("apple", "banana");
-print_r($watata = array_combine($a1,$a2));
-foreach($watata as $a => $b)
-{
-	echo $a.'<br/>';
-}
+echo date("m/d/Y H:i:s"), time());
 ?>
 
 </body>

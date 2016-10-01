@@ -47,8 +47,44 @@ $(document).ready(function()
 							success: function(html)
 							{	
 								$("#s_fee").html(html);
+								$("#s_fees").val(html);
 							}
 						});
+					}
+				});
+			});
+			$("#province2").change(function()
+			{
+				var id=$(this).val();
+				var dataString = 'id='+ id;
+				
+				$.ajax
+				({
+					type: "POST",
+					url: "municipality_location.php",
+					data: dataString,
+					cache: false,
+					success: function(html)
+					{	
+						$("#CM2").html(html);
+					}
+				});
+			});
+			$("#CM2").change(function()
+			{
+				var id=$(this).val();
+				var dataString = 'id='+ id;
+				
+				$.ajax
+				({
+					type: "POST",
+					url: "ship_fee.php",
+					data: dataString,
+					cache: false,
+					success: function(html)
+					{	
+						$("#s_fee").html(html);
+						$("#s_fees").val(html);
 					}
 				});
 			});

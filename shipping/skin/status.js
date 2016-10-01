@@ -22,3 +22,19 @@ $.ajax({
 		$(".fee_type").html(result);
 	}
 });
+
+$.ajax({
+	url: "list_kmfee.php",
+	success: function(result)
+	{
+		$("#km_price").html(result);
+	}
+});
+
+$.ajax({
+	url: "list_shipfee.php",
+	success: function(result)
+	{
+		$("#ship_fee").html(result);
+	}
+});

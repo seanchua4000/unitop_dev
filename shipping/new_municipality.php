@@ -5,16 +5,31 @@ if(Input::exists())
 {
 	if(Token::check(Input::get('token')))
 	{
-		try{
-		$branch = Db::getInstance();
-		$branch->insert('location', array(
-			'parent_id' => rtrim(Input::get('parent_id')),
-			'location' => rtrim(strtoupper(Input::get('municipality'))),
-			'latitude' => rtrim(Input::get('latitude')),
-			'longitude' => rtrim(Input::get('longitude'))
+		$validate = new Validate();
+		$validation = $validate->check($_POST, array(
+			'municipality' => array(
+				'required' => true
+				)
+		));
+
+		if($validation->passed())
+		{
+			try{
+				$branch = Db::getInstance();
+				$branch->insert('location', array(
+					'parent_id' => rtrim(Input::get('parent_id')),
+					'location' => rtrim(strtoupper(Input::get('municipality'))),
+					'latitude' => rtrim(Input::get('latitude')),
+					'longitude' => rtrim(Input::get('longitude'))
 			));
 		} catch(Exception $e) {
 			die($e->getMessage());
+		}
+		} else {
+			foreach($validation->errors() as $error)
+			{
+				echo $error;
+			}
 		}
 	}
 }

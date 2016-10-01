@@ -11,20 +11,41 @@ if(Input::exists())
 {
 	if(Token::check(Input::get('token')))
 	{
-		try {
-			$km = Input::get('kilometer');
-			$fee = Input::get('fee');
-			$status = Input::get('status');
+		$validate = new Validate();
+		$validation = $validate->check($_POST, array(
+			'kilometer' => array(
+				'required' => true
+				),
+			'fee' => array(
+				'required' => true
+				),
+			'status' => array(
+				'required' => true
+				)
+		));
+
+		if($validation->passed())
+		{
+			try {
+				$km = Input::get('kilometer');
+				$fee = Input::get('fee');
+				$status = Input::get('status');
 			if($status == 1)
 			{
 				$db->query("UPDATE km_price SET status = 2");
-				$db->query("UPDATE km_price SET km = $km, fee = $fee, status = $status WHERE main_id = $main_id");
+				$db->query("UPDATE km_price SET km = '$km', fee = '$fee', status = '$status' WHERE main_id = $main_id");
 			} elseif($status == 2) {
-				$db->query("UPDATE km_price SET km = $km, fee = $fee, status = 2 WHERE main_id = $main_id");
+				$db->query("UPDATE km_price SET km = '$km', fee = '$fee', status = 2 WHERE main_id = $main_id");
 			}
 			Redirect::to('shipping_fee1.php');
 		} catch(Exception $e) {
 			die($e->getMessage());
+		}
+		} else {
+			foreach($validation->errors() as $error)
+			{
+				echo $error;
+			}
 		}
 	}
 }
@@ -47,15 +68,27 @@ if(Input::exists())
 			<li><a href="shipping_address.php">Shipping Address</a></li>
 		</ul>
 	</nav>
-	<form action="" method="POST">
+	<form action="" method="POST" class="shipping_address">
+	<ul>
+		<li>
 		<label>Kilometer</label>
 			<input type="text" name="kilometer" value="<?php echo $res->km; ?>">
+		</li>
+		<li>
 		<label>Fee</label>
 			<input type="text" name="fee" value="<?php echo $res->fee; ?>">
+		</li>
+		<li>
+		<label>Status</label>
 			<select id="main_status" name="status">
 			</select>
-			<input type="submit" value="Save">
+		</li>
+		<li>
+			<button type="submit">Save</button>
+		</li>
+			
 			<input type="hidden" name="token" value="<?php echo Token::generate(); ?>">
+	</ul>
 	</form>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>

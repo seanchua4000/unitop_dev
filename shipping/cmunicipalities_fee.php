@@ -55,6 +55,7 @@ if(Input::exists('POST'))
 		<div class="prov_header">
 		<?php echo strtoupper($location); ?>
 		<select name="fee_type" class="fee_type input_class1"></select>
+		<span class="prov_text">Select All</span><input type="checkbox" id="select_all">
 		</div>	
 		<table class="loc_table">
 			<tr>
@@ -67,14 +68,12 @@ if(Input::exists('POST'))
 			<?php foreach($res->results() as $res_info) : ?>
 				<tr>
 					
-					<td><input type="checkbox" class="sub_status" name="sub_id[]" value="<?php echo $res_info->main_id; ?>" >
+					<td><input type="checkbox" class="sub_status checkbox" name="sub_id[]" value="<?php echo $res_info->main_id; ?>" >
 					<?php echo $res_info->location; ?></td>
 					<td><?php echo $res_info->latitude; ?></td>
 					<td><?php echo $res_info->longitude; ?></td>
 					<td><?php echo $res_info->status; ?></td>
-					<td>
-						<?php echo $res_info->fee_type; ?>
-					</td>
+					<td><?php echo $res_info->fee_type; ?></td>
 				</tr>
 			<?php endforeach; ?>
 		</table>
@@ -85,5 +84,6 @@ if(Input::exists('POST'))
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script type="text/javascript" src="skin/location.js"></script>
 <script type="text/javascript" src="skin/status.js"></script>
+<script type="text/javascript" src="skin/select.js"></script>
 </body>
 </html>
